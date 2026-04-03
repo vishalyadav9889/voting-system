@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Admin Dashboard</h2>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5>Add New Candidate</h5>
+                <form action="/admin/add" method="POST" class="row g-3">
+                    <div class="col-md-5">
+                        <input type="text" name="name" class="form-control" placeholder="Candidate Name" required>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="symbol" class="form-control" placeholder="Symbol Image Name (e.g., car.png)" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success w-100">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-hover bg-white shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Votes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in candidates %}
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.symbol }}</td>
+                    <td>{{ c.votes }}</td>
+                    <td><a href="/admin/delete/{{ c.id }}" class="btn btn-sm btn-outline-danger">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center mt-5">
+            <form action="/admin/declare" method="POST">
+                <button type="submit" class="btn btn-warning btn-lg px-5 shadow">📢 Declare Final Results</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* EVM Button Styling */
+.btn-primary {
+    background-color: #003366; /* Deep Blue like EVM */
+    border: none;
+    box-shadow: 0 4px #002244;
+}
+
+.btn-primary:active {
+    box-shadow: 0 1px #002244;
+    transform: translateY(3px);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
